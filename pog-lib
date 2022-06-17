@@ -1,1 +1,100 @@
+local library = {}
 
+function library:CreateWindow()
+	
+	local ScreenGui = Instance.new("ScreenGui")
+	local Back = Instance.new("Frame")
+	local MainFrame = Instance.new("Frame")
+	local TopBar = Instance.new("Frame")
+	local Icon = Instance.new("ImageLabel")
+	local Container = Instance.new("Frame")
+	local UIGridLayout = Instance.new("UIGridLayout")
+	local TextButton = Instance.new("TextButton")
+	local UICorner = Instance.new("UICorner")
+
+	ScreenGui.Parent = game.Workspace
+	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Back.Name = "Back"
+	Back.Parent = ScreenGui
+	Back.BackgroundColor3 = Color3.fromRGB(211, 211, 211)
+	Back.BackgroundTransparency = 0.650
+	Back.BorderSizePixel = 0
+	Back.Position = UDim2.new(0.431215286, 0, 0.100613497, 0)
+	Back.Size = UDim2.new(0, 508, 0, 591)
+
+	MainFrame.Name = "MainFrame"
+	MainFrame.Parent = Back
+	MainFrame.BackgroundColor3 = Color3.fromRGB(28, 26, 68)
+	MainFrame.BorderColor3 = Color3.fromRGB(182, 182, 182)
+	MainFrame.Position = UDim2.new(0.00393214729, 0, 0.00277163275, 0)
+	MainFrame.Size = UDim2.new(0, 504, 0, 587)
+
+	TopBar.Name = "TopBar"
+	TopBar.Parent = MainFrame
+	TopBar.BackgroundColor3 = Color3.fromRGB(28, 26, 68)
+	TopBar.BorderSizePixel = 0
+	TopBar.Size = UDim2.new(0, 504, 0, 80)
+
+	Icon.Name = "Icon"
+	Icon.Parent = TopBar
+	Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Icon.BorderSizePixel = 0
+	Icon.Position = UDim2.new(0.0496031754, 0, 0.125, 0)
+	Icon.Size = UDim2.new(0, 60, 0, 60)
+	Icon.Image = "http://www.roblox.com/asset/?id=9939920624"
+
+	Container.Name = "Container"
+	Container.Parent = TopBar
+	Container.BackgroundColor3 = Color3.fromRGB(28, 26, 68)
+	Container.BorderColor3 = Color3.fromRGB(182, 182, 182)
+	Container.Position = UDim2.new(0.117063493, 0, 1.42659712, 0)
+	Container.Size = UDim2.new(0, 386, 0, 437)
+
+	UIGridLayout.Parent = Container
+	UIGridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	UIGridLayout.CellPadding = UDim2.new(0, 5, 1, 5)
+	UIGridLayout.CellSize = UDim2.new(0, 350, 0, 25)
+	UIGridLayout.FillDirectionMaxCells = 10
+
+	local function FCFQ_fake_script()
+		local script = Instance.new('LocalScript', Back)
+
+		script.Parent.MainFrame.Active = true
+		script.Parent.MainFrame.Draggable = true
+	end
+	coroutine.wrap(FCFQ_fake_script)()
+	
+	local Window = {}
+	
+	function Window:CreateButton(Name,Call)
+		
+		local TextButton = Instance.new("TextButton")
+		local UICorner = Instance.new("UICorner")
+		
+		TextButton.Parent = Container
+		TextButton.BackgroundColor3 = Color3.fromRGB(109, 92, 211)
+		TextButton.Position = UDim2.new(0.31088084, 0, 0, 0)
+		TextButton.Size = UDim2.new(0, 123, 0, 50)
+		TextButton.Font = Enum.Font.SourceSansLight
+		TextButton.Text = Name
+		TextButton.TextColor3 = Color3.fromRGB(28, 26, 68)
+		TextButton.TextSize = 17.000
+
+		UICorner.CornerRadius = UDim.new(0, 10)
+		UICorner.Parent = TextButton
+		
+		TextButton.MouseButton1Click:Connect(function()
+			
+			pcall(Call)
+			
+		end)
+		
+	end
+	
+	return Window
+	
+end
+
+return library
